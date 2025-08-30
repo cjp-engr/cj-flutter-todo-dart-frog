@@ -1,0 +1,10 @@
+{
+    "dart.sdkPath": "D:\\donotdelete\\flutter\\bin\\cache\\dart-sdk",
+    "dart.flutterSdkPath": "D:\\donotdelete\\flutter",
+    "[dart]": {
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+        "editor.detectIndentation": false,
+        "editor.suggest.insertMode": "replace"
+    }
+}
