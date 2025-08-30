@@ -9,4 +9,6 @@ abstract interface class AuthRepository {
     required String fullname,
     required String password,
   });
+
+  FutureEither<User> signin({required String email, required String password});
 }

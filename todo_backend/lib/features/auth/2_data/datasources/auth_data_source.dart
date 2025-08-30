@@ -7,4 +7,6 @@ abstract interface class AuthDataSource {
     required String fullname,
     required String password,
   });
+
+  Future<UserModel> signin({required String email, required String password});
 }

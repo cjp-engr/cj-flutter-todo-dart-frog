@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:dart_frog/dart_frog.dart';
-import 'package:todo_backend/features/auth/presentation/controllers/auth_controller.dart';
+import 'package:todo_backend/features/auth/3_presentation/controllers/auth_controller.dart';
 
 Future<Response> onRequest(RequestContext context) async {
   final authController = context.read<AuthController>();

@@ -1,5 +1,5 @@
-import 'package:todo_backend/features/auth/domain/dtos/request/signup_request_model.dart';
-import 'package:todo_backend/features/auth/domain/dtos/response/signup_response_model.dart';
+import 'package:todo_backend/features/auth/1_domain/dtos/request/signup_request_model.dart';
+import 'package:todo_backend/features/auth/1_domain/dtos/response/signup_response_model.dart';
 
 import '../../../../core/typedefs/typedefs.dart';
 import '../../../../core/usecases/usecases.dart';

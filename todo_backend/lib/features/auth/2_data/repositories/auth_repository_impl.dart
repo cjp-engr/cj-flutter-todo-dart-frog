@@ -3,8 +3,8 @@ import 'package:todo_backend/core/entities/user_entity.dart';
 import 'package:todo_backend/core/errors/exceptions.dart';
 import 'package:todo_backend/core/errors/failures.dart';
 import 'package:todo_backend/core/typedefs/typedefs.dart';
-import 'package:todo_backend/features/auth/data/datasources/auth_data_source.dart';
-import 'package:todo_backend/features/auth/domain/repositories/auth_repository.dart';
+import 'package:todo_backend/features/auth/1_domain/repositories/auth_repository.dart';
+import 'package:todo_backend/features/auth/2_data/datasources/auth_data_source.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl({required AuthDataSource authDataSource})
@@ -23,6 +23,23 @@ class AuthRepositoryImpl implements AuthRepository {
         username: username,
         email: email,
         fullname: fullname,
+        password: password,
+      );
+
+      return Right(user);
+    } on TodoApiException catch (e) {
+      return Left(TodoApiFailure(message: e.message, statusCode: e.statusCode));
+    }
+  }
+
+  @override
+  FutureEither<User> signin({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      final user = await _authDataSource.signin(
+        email: email,
         password: password,
       );
 
