@@ -16,4 +16,5 @@ build/
 coverage/
 
 dev.env
+test.env
 .env

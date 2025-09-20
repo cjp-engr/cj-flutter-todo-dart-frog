@@ -10,7 +10,7 @@ class InputValidators {
   }
 
   bool fullname(String fullname) {
-    return !isLength(fullname.trim(), 2, 12) || false;
+    return !isLength(fullname.trim(), 2) || false;
   }
 
   bool password(String password) {
