@@ -13,7 +13,6 @@ class RegisterUserUC implements UseCase<dynamic, UserEntity> {
   Future<Either<Failure, UserEntity>> call(UserEntity params) async {
     try {
       final result = await userRepo.registerUserToDataSource(
-        id: params.id!,
         username: params.username!,
         email: params.email,
         fullname: params.fullname!,

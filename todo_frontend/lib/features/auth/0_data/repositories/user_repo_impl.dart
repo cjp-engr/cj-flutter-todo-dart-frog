@@ -12,7 +12,6 @@ class UserRepoImpl implements UserRepo {
 
   @override
   Future<Either<Failure, UserEntity>> registerUserToDataSource({
-    required String id,
     required String username,
     required String email,
     required String fullname,
@@ -20,7 +19,6 @@ class UserRepoImpl implements UserRepo {
   }) async {
     try {
       final result = await userRemoteDatasource.registerUserInfoToDatabase(
-        id: id,
         username: username,
         email: email,
         fullname: fullname,

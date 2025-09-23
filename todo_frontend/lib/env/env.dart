@@ -1,7 +1,9 @@
-import 'package:dotenv/dotenv.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-final env = DotEnv(includePlatformEnvironment: true)..load();
-
-abstract class Env {
-  static const String localHost = 'LOCAL_HOST';
+Future<void> init() async {
+  try {
+    await dotenv.load(fileName: ".env");
+  } catch (e) {
+    throw Exception('Error loading .env file: $e');
+  }
 }

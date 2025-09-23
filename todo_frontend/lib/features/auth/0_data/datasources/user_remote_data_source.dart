@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
-import 'package:todo_frontend/env/env.dart';
 import 'package:todo_frontend/features/auth/1_domain/entities/user_entity.dart';
 
 abstract class UserRemoteDatasource {
@@ -21,6 +21,8 @@ abstract class UserRemoteDatasource {
 }
 
 class UserRemoteDatasourceImpl implements UserRemoteDatasource {
+  final String baseUrl = dotenv.env['URL'] ?? 'default_url';
+
   @override
   Future<UserEntity> registerUserInfoToDatabase({
     String? id,
@@ -30,13 +32,13 @@ class UserRemoteDatasourceImpl implements UserRemoteDatasource {
     required String password,
   }) async {
     final response = await http.post(
-      Uri.parse('http://192.168.100.11:8080/auth/signup'),
+      Uri.parse('${baseUrl}auth/signup'),
       headers: {'Content-Type': 'application/json'},
       body: json.encode({
-        'username': 'username',
-        'email': 'email@email.com',
-        'fullname': 'fullname',
-        'password': 'password',
+        'username': username,
+        'email': email,
+        'fullname': fullname,
+        'password': password,
       }),
     );
     if (kDebugMode) {
@@ -61,7 +63,7 @@ class UserRemoteDatasourceImpl implements UserRemoteDatasource {
     required String password,
   }) async {
     final response = await http.post(
-      Uri.parse('${env[Env.localHost]}:8080/auth/signin'),
+      Uri.parse('${dotenv.get('')}auth/signin'),
       headers: {'Content-Type': 'application/json'},
       body: json.encode({'email': email, 'password': password}),
     );

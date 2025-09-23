@@ -8,10 +8,12 @@ import 'package:todo_frontend/l10n/app_localizations.dart';
 import 'package:todo_frontend/injection.dart';
 import 'package:todo_frontend/theme.dart';
 import 'injection.dart' as di;
+import 'package:todo_frontend/env/env.dart' as env;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await di.init();
+  await env.init();
   runApp(MyApp(router: sl()));
 }
 
