@@ -124,11 +124,11 @@ abstract class AppLocalizations {
   /// **'Email'**
   String get email;
 
-  /// No description provided for @fullName.
+  /// No description provided for @fullname.
   ///
   /// In en, this message translates to:
   /// **'Full Name'**
-  String get fullName;
+  String get fullname;
 
   /// No description provided for @userName.
   ///

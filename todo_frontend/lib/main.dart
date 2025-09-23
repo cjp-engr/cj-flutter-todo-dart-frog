@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:provider/provider.dart';
+import 'package:todo_frontend/core/services/theme_service.dart';
 import 'package:todo_frontend/l10n/app_localizations.dart';
-import 'package:todo_frontend/2_application/core/services/theme_service.dart';
 import 'package:todo_frontend/injection.dart';
 import 'package:todo_frontend/theme.dart';
 import 'injection.dart' as di;

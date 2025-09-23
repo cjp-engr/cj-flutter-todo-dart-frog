@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:todo_frontend/2_application/core/constants/border_radius.dart';
-import 'package:todo_frontend/2_application/core/constants/font_size.dart';
-import 'package:todo_frontend/2_application/core/constants/spacing.dart';
-import 'package:todo_frontend/2_application/core/utils/color.dart';
+import 'package:todo_frontend/core/constants/border_radius.dart';
+import 'package:todo_frontend/core/constants/font_size.dart';
+import 'package:todo_frontend/core/constants/spacing.dart';
+import 'package:todo_frontend/core/utils/color.dart';
 
 class AppTheme {
   AppTheme._();

@@ -6,7 +6,7 @@
     "registerPolicy": "Mauris eget neque at sem venenatis eleifend.",
 
     "email":"Email",
-    "fullName": "Full Name",
+    "fullname": "Full Name",
     "userName": "Username",
     "password": "Password",
     "signUp": "Sign up",
