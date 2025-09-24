@@ -10,15 +10,11 @@ class TodoRepoImpl implements TodoRepo {
 
   TodoRepoImpl({required this.todoRemoteDatasource});
   @override
-  Future<Either<Failure, TodoEntity>> addTodoToDataSource({
-    required String title,
-    required String description,
-  }) async {
+  Future<Either<Failure, TodoEntity>> addTodoToDataSource(
+    TodoEntity todo,
+  ) async {
     try {
-      final result = await todoRemoteDatasource.addTodoToDatabase(
-        title: title,
-        description: description,
-      );
+      final result = await todoRemoteDatasource.addTodoToDatabase(todo);
       return right(result);
     } on ServerException catch (_) {
       return left(ServerFailure());
@@ -40,16 +36,10 @@ class TodoRepoImpl implements TodoRepo {
   }
 
   @override
-  Future<Either<Failure, TodoEntity>> updateTodoToDataSource({
-    required String title,
-    required String description,
-  }) async {
+  Future<Either<Failure, String>> deleteTodoToDataSource(String id) async {
     try {
-      final result = await todoRemoteDatasource.updateTodoToDatabase(
-        title: title,
-        description: description,
-      );
-      return right(result);
+      await todoRemoteDatasource.deleteTodoToDatabase(id);
+      return right(id);
     } on ServerException catch (_) {
       return left(ServerFailure());
     } catch (_) {
@@ -57,19 +47,17 @@ class TodoRepoImpl implements TodoRepo {
     }
   }
 
-  //!TODO
-
-  // @override
-  // Future<Either<Failure, TodoEntity>> deleteTodoToDataSource({
-  //   required String id,
-  // }) async {
-  //   try {
-  //     await todoRemoteDatasource.deleteTodoToDatabase(id);
-  //     return right(id);
-  //   } on ServerException catch (_) {
-  //     return left(ServerFailure());
-  //   } catch (_) {
-  //     return left(GeneralFailure());
-  //   }
-  // }
+  @override
+  Future<Either<Failure, TodoEntity>> updateTodoToDataSource(
+    TodoEntity todo,
+  ) async {
+    try {
+      final result = await todoRemoteDatasource.updateTodoToDatabase(todo);
+      return right(result);
+    } on ServerException catch (_) {
+      return left(ServerFailure());
+    } catch (_) {
+      return left(GeneralFailure());
+    }
+  }
 }

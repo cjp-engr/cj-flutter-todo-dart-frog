@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:todo_frontend/features/auth/1_domain/entities/user_entity.dart';
@@ -41,16 +40,13 @@ class UserRemoteDatasourceImpl implements UserRemoteDatasource {
         'password': password,
       }),
     );
-    if (kDebugMode) {
-      print('testResponseStatus: ${response.statusCode}');
-    }
     if (response.statusCode == 201) {
-      if (kDebugMode) {
-        print(
-          'testResponse: ${UserEntity.fromJson(json.decode(response.body))}',
-        );
-      }
-      return UserEntity.fromJson(json.decode(response.body));
+      return UserEntity(
+        id: json.decode(response.body)['id'],
+        email: email,
+        fullname: fullname,
+        username: username,
+      );
     } else {
       throw Exception('Failed to register user');
     }
@@ -69,8 +65,14 @@ class UserRemoteDatasourceImpl implements UserRemoteDatasource {
     );
 
     if (response.statusCode == 201) {
-      final responseData = json.decode(response.body);
-      return responseData;
+      // final responseData = json.decode(response.body);
+      // return responseData;
+      return UserEntity(
+        id: json.decode(response.body)['id'],
+        email: email,
+        fullname: json.decode(response.body)['fullname'],
+        username: json.decode(response.body)['username'],
+      );
     } else {
       throw Exception('Failed to register user');
     }

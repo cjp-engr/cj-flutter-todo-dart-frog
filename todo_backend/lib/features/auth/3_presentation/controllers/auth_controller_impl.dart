@@ -5,8 +5,8 @@ import 'package:todo_backend/core/services/jwt_service.dart';
 import 'package:todo_backend/core/typedefs/typedefs.dart';
 import 'package:todo_backend/core/validators/input_validators.dart';
 import 'package:todo_backend/core/validators/validators_constants.dart';
+import 'package:todo_backend/features/auth/1_domain/dtos/request/signin_request_model.dart';
 import 'package:todo_backend/features/auth/1_domain/dtos/request/signup_request_model.dart';
-import 'package:todo_backend/features/auth/1_domain/dtos/response/signin_response_model.dart';
 import 'package:todo_backend/features/auth/1_domain/usecases/signin_usecase.dart';
 import 'package:todo_backend/features/auth/1_domain/usecases/signup_usecase.dart';
 import 'package:todo_backend/features/auth/3_presentation/controllers/auth_controller.dart';
@@ -124,7 +124,15 @@ class AuthControllerImpl implements AuthController {
 
         final token = _jwtService.sign(payload);
 
-        return Response.json(body: {'token': token, 'id': user.id});
+        return Response.json(
+          body: {
+            'token': token,
+            'id': user.id,
+            'username': user.username,
+            'email': user.email,
+            'fullname': user.fullname,
+          },
+        );
       },
     );
   }

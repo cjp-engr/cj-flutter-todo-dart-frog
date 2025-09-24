@@ -36,7 +36,7 @@ Future<void> init() async {
       addTodoUC: sl(),
       readTodosUC: sl(),
       updateTodoUC: sl(),
-      // deleteTodoUC: sl(),
+      deleteTodoUC: sl(),
     ),
   );
   sl.registerFactory(() => ActiveTodosBloc(updateTodoUC: sl()));
@@ -48,10 +48,10 @@ Future<void> init() async {
   sl.registerFactory(() => RegisterUserUC(userRepo: sl()));
   sl.registerFactory(() => UserDetailsUC(userRepo: sl()));
 
-  sl.registerFactory(() => AddTodoUC(todoRepo: sl(), presenter: sl()));
+  sl.registerFactory(() => AddTodoUC(todoRepo: sl()));
   sl.registerFactory(() => ReadTodosUC(todoRepo: sl()));
-  sl.registerFactory(() => UpdateTodoUC(todoRepo: sl(), presenter: sl()));
-  // sl.registerFactory(() => DeleteTodoUC(todoRepo: sl(), presenter: sl()));
+  sl.registerFactory(() => UpdateTodoUC(todoRepo: sl()));
+  sl.registerFactory(() => DeleteTodoUC(todoRepo: sl()));
 
   // ! data Layer
   sl.registerFactory<UserRepo>(() => UserRepoImpl(userRemoteDatasource: sl()));

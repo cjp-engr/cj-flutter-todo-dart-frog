@@ -21,34 +21,33 @@ class ActiveTodosBloc extends Bloc<ActiveTodosEvent, ActiveTodosState> {
     Emitter<ActiveTodosState> emit,
   ) async {
     emit(state.copyWith(status: BlocStatus.loading));
-    //! TODO
-    // final failureOrSuccess = await updateTodoUC.call(event.todo);
+    final failureOrSuccess = await updateTodoUC.call(event.todo);
 
-    // failureOrSuccess.fold(
-    //   (failure) {
-    //     emit(state.copyWith(status: BlocStatus.error));
-    //   },
-    //   (doneTodo) {
-    //     final todos = state.todos.map((TodoEntity todo) {
-    //       if (doneTodo.id == todo.id) {
-    //         return TodoEntity(
-    //           id: todo.id,
-    //           title: doneTodo.title,
-    //           description: doneTodo.description,
-    //           isCompleted: doneTodo.isCompleted,
-    //         );
-    //       }
-    //       return todo;
-    //     }).toList();
-    //     emit(
-    //       state.copyWith(
-    //         status: BlocStatus.updated,
-    //         todos: todos,
-    //         filteredTodos: todos,
-    //       ),
-    //     );
-    //   },
-    // );
+    failureOrSuccess.fold(
+      (failure) {
+        emit(state.copyWith(status: BlocStatus.error));
+      },
+      (doneTodo) {
+        final todos = state.todos.map((TodoEntity todo) {
+          if (doneTodo.id == todo.id) {
+            return TodoEntity(
+              id: todo.id,
+              title: doneTodo.title,
+              description: doneTodo.description,
+              isCompleted: doneTodo.isCompleted,
+            );
+          }
+          return todo;
+        }).toList();
+        emit(
+          state.copyWith(
+            status: BlocStatus.updated,
+            todos: todos,
+            filteredTodos: todos,
+          ),
+        );
+      },
+    );
   }
 
   Future<void> _readActiveTodos(

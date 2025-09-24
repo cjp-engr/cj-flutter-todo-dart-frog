@@ -1,15 +1,11 @@
 import 'package:equatable/equatable.dart';
-import 'package:todo_backend/core/typedefs/typedefs.dart';
 
-class SigninResponseModel extends Equatable {
-  const SigninResponseModel({required this.id});
+class SigninRequestModel extends Equatable {
+  const SigninRequestModel({required this.email, required this.password});
 
-  final String id;
+  final String email;
+  final String password;
 
   @override
-  List<Object> get props => [id];
-
-  MapData toJson() {
-    return {'id': id};
-  }
+  List<Object> get props => [email, password];
 }

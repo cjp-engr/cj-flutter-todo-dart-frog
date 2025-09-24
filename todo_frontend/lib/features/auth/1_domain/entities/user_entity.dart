@@ -22,6 +22,22 @@ class UserEntity extends Equatable {
   @override
   List<Object?> get props => [id, email, fullname, username, password];
 
+  UserEntity copyWith({
+    String? id,
+    String? email,
+    String? fullname,
+    String? username,
+    String? password,
+  }) {
+    return UserEntity(
+      id: id ?? this.id,
+      email: email ?? this.email,
+      fullname: fullname ?? this.fullname,
+      username: username ?? this.username,
+      password: password ?? this.password,
+    );
+  }
+
   MapData toMap() {
     return <String, dynamic>{
       'id': id,

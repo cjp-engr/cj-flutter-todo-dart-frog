@@ -1,10 +1,7 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:todo_frontend/core/base_use_case/use_case.dart';
 import 'package:todo_frontend/core/failures/failures.dart';
-import 'package:todo_frontend/features/todos/1_domain/dtos/request/todos_request_model.dart';
-import 'package:todo_frontend/features/todos/1_domain/dtos/response/todos_response_model.dart';
 import 'package:todo_frontend/features/todos/1_domain/entities/todo_entity.dart';
-import 'package:todo_frontend/features/todos/1_domain/presenters/todos_presenter.dart';
 import 'package:todo_frontend/features/todos/1_domain/repositories/todo_repo.dart';
 
 class ReadTodosUC implements UseCaseNoParams {
@@ -22,66 +19,47 @@ class ReadTodosUC implements UseCaseNoParams {
   }
 }
 
-class AddTodoUC implements UseCase<TodosResponseModel, TodosRequestModel> {
+class AddTodoUC implements UseCase<dynamic, TodoEntity> {
   final TodoRepo todoRepo;
-  final TodosPresenter presenter;
 
-  AddTodoUC({required this.todoRepo, required this.presenter});
+  AddTodoUC({required this.todoRepo});
 
   @override
-  Future<Either<Failure, TodosResponseModel>> call(
-    TodosRequestModel todo,
-  ) async {
+  Future<Either<Failure, TodoEntity>> call(TodoEntity todo) async {
     try {
-      //! TODO
-      final result = await todoRepo.addTodoToDataSource(
-        title: '',
-        description: '',
-      );
-      return presenter.todosPresenter(result);
+      return await todoRepo.addTodoToDataSource(todo);
     } catch (e) {
       return Left(GeneralFailure());
     }
   }
 }
 
-class UpdateTodoUC implements UseCase<TodosResponseModel, TodosRequestModel> {
+class UpdateTodoUC implements UseCase<dynamic, TodoEntity> {
   final TodoRepo todoRepo;
-  final TodosPresenter presenter;
 
-  UpdateTodoUC({required this.todoRepo, required this.presenter});
+  UpdateTodoUC({required this.todoRepo});
 
   @override
-  Future<Either<Failure, TodosResponseModel>> call(
-    TodosRequestModel todo,
-  ) async {
+  Future<Either<Failure, TodoEntity>> call(TodoEntity params) async {
     try {
-      //! TODO
-      final result = await todoRepo.updateTodoToDataSource(
-        title: '',
-        description: '',
-      );
-      return presenter.todosPresenter(result);
+      return await todoRepo.updateTodoToDataSource(params);
     } catch (e) {
       return Left(GeneralFailure());
     }
   }
 }
 
-//! TODO
-// class DeleteTodoUC implements UseCase<TodosResponseModel, TodosRequestModel> {
-//   final TodoRepo todoRepo;
-//   final TodosPresenter presenter;
+class DeleteTodoUC implements UseCase<dynamic, String> {
+  final TodoRepo todoRepo;
 
-//   DeleteTodoUC({required this.todoRepo, required this.presenter});
+  DeleteTodoUC({required this.todoRepo});
 
-//   @override
-//   Future<Either<Failure, TodosResponseModel>> call(TodosRequestModel id) async {
-//     try {
-//       final result = await todoRepo.deleteTodoToDataSource(id: '');
-//       return presenter.todosPresenter(result);
-//     } catch (e) {
-//       return Left(GeneralFailure());
-//     }
-//   }
-// }
+  @override
+  Future<Either<Failure, String>> call(String id) async {
+    try {
+      return await todoRepo.deleteTodoToDataSource(id);
+    } catch (e) {
+      return Left(GeneralFailure());
+    }
+  }
+}
