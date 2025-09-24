@@ -59,20 +59,13 @@ class UserRemoteDatasourceImpl implements UserRemoteDatasource {
     required String password,
   }) async {
     final response = await http.post(
-      Uri.parse('${dotenv.get('')}auth/signin'),
+      Uri.parse('${baseUrl}auth/signin'),
       headers: {'Content-Type': 'application/json'},
       body: json.encode({'email': email, 'password': password}),
     );
-
-    if (response.statusCode == 201) {
-      // final responseData = json.decode(response.body);
-      // return responseData;
-      return UserEntity(
-        id: json.decode(response.body)['id'],
-        email: email,
-        fullname: json.decode(response.body)['fullname'],
-        username: json.decode(response.body)['username'],
-      );
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      return UserEntity.fromJson(data);
     } else {
       throw Exception('Failed to register user');
     }

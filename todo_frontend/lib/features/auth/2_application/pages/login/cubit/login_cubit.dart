@@ -20,7 +20,7 @@ class LoginCubit extends Cubit<LoginState> {
 
     failureOrSuccess.fold(
       (failure) => emit(state.copyWith(status: BlocStatus.error)),
-      (id) {
+      (user) {
         emit(state.copyWith(status: BlocStatus.success));
       },
     );

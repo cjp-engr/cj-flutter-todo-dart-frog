@@ -11,7 +11,6 @@ abstract class UserRepo {
   });
 
   Future<Either<Failure, UserEntity>> loggedInExistingUserFromDataSource({
-    required String id,
     required String email,
     required String password,
   });

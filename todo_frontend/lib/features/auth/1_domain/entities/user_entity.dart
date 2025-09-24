@@ -48,18 +48,14 @@ class UserEntity extends Equatable {
     };
   }
 
-  factory UserEntity.fromMap(MapData map) {
+  factory UserEntity.fromJson(MapData map) {
     return UserEntity(
       id: map['id'] != null ? map['id'] as String : null,
       email: map['email'] as String,
       fullname: map['fullname'] != null ? map['fullname'] as String : null,
       username: map['username'] != null ? map['username'] as String : null,
-      password: map['password'] != null ? map['password'] as String : null,
     );
   }
 
   String toJson() => json.encode(toMap());
-
-  factory UserEntity.fromJson(String source) =>
-      UserEntity.fromMap(json.decode(source) as MapData);
 }

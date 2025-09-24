@@ -34,7 +34,6 @@ class UserRepoImpl implements UserRepo {
 
   @override
   Future<Either<Failure, UserEntity>> loggedInExistingUserFromDataSource({
-    required String id,
     required String email,
     required String password,
   }) async {
