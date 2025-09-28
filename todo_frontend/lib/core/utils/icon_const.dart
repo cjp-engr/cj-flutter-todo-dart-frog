@@ -10,4 +10,6 @@ class IconConst {
   static const String logout = '$_iconBase/logout.png';
   static const String save = '$_iconBase/save.png';
   static const String setting = '$_iconBase/setting.png';
+
+  static const String notes = '$_iconBase/notes.png';
 }

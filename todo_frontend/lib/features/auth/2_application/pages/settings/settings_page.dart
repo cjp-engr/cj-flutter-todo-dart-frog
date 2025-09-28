@@ -78,14 +78,14 @@ class _SettingsPageState extends State<SettingsPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Center(
-                    child: CircleAvatar(
-                      radius: 75,
-                      backgroundImage: NetworkImage(
-                        'https://picsum.photos/seed/picsum/200/500',
-                      ),
-                    ),
-                  ),
+                  // const Center(
+                  //   child: CircleAvatar(
+                  //     radius: 75,
+                  //     backgroundImage: NetworkImage(
+                  //       'https://picsum.photos/seed/picsum/200/500',
+                  //     ),
+                  //   ),
+                  // ),
                   const SizedBox(height: TodoSpacing.verySmall),
                   TodoTextField(
                     label: 'Full Name',

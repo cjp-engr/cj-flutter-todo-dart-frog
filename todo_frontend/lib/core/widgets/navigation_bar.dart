@@ -54,6 +54,8 @@ class _TodoNavigationBarState extends State<TodoNavigationBar> {
                     context.goNamed(TodoRouteName.activeTodo.name);
                   case 2:
                     context.goNamed(TodoRouteName.completedTodo.name);
+                  case 3:
+                    context.goNamed(TodoRouteName.settings.name);
                 }
               },
               currentIndex: currentIndex,
@@ -78,6 +80,13 @@ class _TodoNavigationBarState extends State<TodoNavigationBar> {
                     isActive: currentIndex == 2,
                   ),
                   label: 'Done',
+                ),
+                BottomNavigationBarItem(
+                  icon: BottomIconWidget(
+                    icon: IconConst.setting,
+                    isActive: currentIndex == 3,
+                  ),
+                  label: 'Account',
                 ),
               ],
             ),

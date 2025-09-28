@@ -166,7 +166,7 @@ class _HeaderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Image.asset(IconConst.todo, scale: 1),
+        Image.asset(IconConst.notes, scale: 5),
         TodoText(
           text: context.appLocalization.appTitle,
           fontSize: TodoFontSize.extraLarge,

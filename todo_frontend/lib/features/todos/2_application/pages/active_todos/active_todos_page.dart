@@ -68,17 +68,6 @@ class _ActiveTodosPageState extends State<ActiveTodosPage> {
           }
 
           return TodoAppBar(
-            appBarLeading: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: TodoSpacing.small,
-              ),
-              child: SecondaryButton(
-                assetName: IconConst.setting,
-                onPressed: () {
-                  context.goNamed(TodoRouteName.settings.name);
-                },
-              ),
-            ),
             body: Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: TodoSpacing.small,

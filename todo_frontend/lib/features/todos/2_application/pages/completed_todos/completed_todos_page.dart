@@ -53,17 +53,6 @@ class CompletedTodosPage extends StatelessWidget {
             return const Text('test you cannot register, sorry');
           }
           return TodoAppBar(
-            appBarLeading: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: TodoSpacing.small,
-              ),
-              child: SecondaryButton(
-                assetName: IconConst.setting,
-                onPressed: () {
-                  context.goNamed(TodoRouteName.settings.name);
-                },
-              ),
-            ),
             body: Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: TodoSpacing.small,

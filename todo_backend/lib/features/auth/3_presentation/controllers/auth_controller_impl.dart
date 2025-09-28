@@ -47,7 +47,7 @@ class AuthControllerImpl implements AuthController {
     }
 
     if (fullname == null || _inputValidators.fullname(fullname)) {
-      errors['fullname'] = ValidatorsConstants.invalidfullname;
+      errors['fullname'] = ValidatorsConstants.invalidFullname;
     }
 
     if (password == null || _inputValidators.password(password)) {
@@ -124,15 +124,7 @@ class AuthControllerImpl implements AuthController {
 
         final token = _jwtService.sign(payload);
 
-        return Response.json(
-          body: {
-            'token': token,
-            'id': user.id,
-            'username': user.username,
-            'email': user.email,
-            'fullname': user.fullname,
-          },
-        );
+        return Response.json(body: {'token': token, 'id': user.id});
       },
     );
   }
