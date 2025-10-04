@@ -8,20 +8,20 @@ part 'active_todos_event.dart';
 part 'active_todos_state.dart';
 
 class ActiveTodosBloc extends Bloc<ActiveTodosEvent, ActiveTodosState> {
-  final UpdateTodoUC updateTodoUC;
-  ActiveTodosBloc({required this.updateTodoUC})
+  final CompleteTodoUC completeTodoUC;
+  ActiveTodosBloc({required this.completeTodoUC})
     : super(ActiveTodosState.initialState()) {
-    on<DoneTodoEvent>(_doneTodo);
+    on<CompleteTodoEvent>(_doneTodo);
     on<ReadActiveTodosEvent>(_readActiveTodos);
     on<SearchActiveTodoEvent>(_searchActiveTodos);
   }
 
   Future<void> _doneTodo(
-    DoneTodoEvent event,
+    CompleteTodoEvent event,
     Emitter<ActiveTodosState> emit,
   ) async {
     emit(state.copyWith(status: BlocStatus.loading));
-    final failureOrSuccess = await updateTodoUC.call(event.todo);
+    final failureOrSuccess = await completeTodoUC.call(event.todo);
 
     failureOrSuccess.fold(
       (failure) {

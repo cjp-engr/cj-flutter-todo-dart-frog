@@ -90,13 +90,13 @@ class _SettingsPageState extends State<SettingsPage> {
                   TodoTextField(
                     label: 'Full Name',
                     controller: _fullNameController,
-                    initialValue: state.user.fullname!,
+                    initialValue: state.user.fullname ?? '',
                   ),
                   const SizedBox(height: TodoSpacing.extraSmall),
                   TodoTextField(
                     label: 'Email',
                     controller: _emailController,
-                    initialValue: state.user.email!,
+                    initialValue: state.user.email ?? '',
                   ),
                   const SizedBox(height: TodoSpacing.medium),
                   const Divider(),

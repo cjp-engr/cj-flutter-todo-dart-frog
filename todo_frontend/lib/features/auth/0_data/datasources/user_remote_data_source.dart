@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:todo_frontend/core/storage/secure_storage.dart';
 import 'package:todo_frontend/features/auth/0_data/models/login_model.dart';
 import 'package:todo_frontend/features/auth/0_data/models/register_model.dart';
+import 'package:todo_frontend/features/auth/0_data/models/user_model.dart';
 import 'package:todo_frontend/features/auth/1_domain/entities/user_entity.dart';
 
 abstract class UserRemoteDatasource {
@@ -86,17 +87,19 @@ class UserRemoteDatasourceImpl implements UserRemoteDatasource {
   }
 
   @override
-  Future<UserEntity> userDetailsFromDatabase() async {
+  Future<UserModel> userDetailsFromDatabase() async {
+    final token = await secureStorage.read(key: SecureStorageKeys.accessToken);
     final response = await http.get(
       Uri.parse('${baseUrl}users/me'),
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer YOUR_TOKEN_HERE',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $token',
       },
     );
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
-      return UserEntity.fromJson(data);
+      return UserModel.fromJson(data['user']);
     } else {
       throw Exception('Failed to register user');
     }

@@ -11,6 +11,7 @@ class UpdateTodoRequestModel extends Equatable {
   final String todoId;
   final String title;
   final String description;
+
   final String userId;
 
   @override

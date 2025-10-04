@@ -13,6 +13,7 @@ abstract class TodoRemoteDatasource {
   Future<TodoModel> addTodoToDatabase(TodoEntity todo);
   Future<TodoModel> updateTodoToDatabase(TodoEntity todo);
   Future<String> deleteTodoToDatabase(String id);
+  Future<TodoModel> completeTodoToDatabase(TodoEntity todo);
 }
 
 class TodoRemoteDatasourceImpl implements TodoRemoteDatasource {
@@ -91,11 +92,7 @@ class TodoRemoteDatasourceImpl implements TodoRemoteDatasource {
           'Authorization': 'Bearer $token',
         },
       );
-      // if (response.statusCode == 204) {
 
-      // } else {
-      //   throw Exception('Failed to register user');
-      // }
       return id;
     } catch (_) {
       throw ServerException();
@@ -118,6 +115,31 @@ class TodoRemoteDatasourceImpl implements TodoRemoteDatasource {
           'description': todo.description,
         }),
       );
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        return TodoModel.fromJson(data['todo']);
+      } else {
+        throw Exception('Failed to register user');
+      }
+    } catch (_) {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<TodoModel> completeTodoToDatabase(TodoEntity todo) async {
+    final token = await secureStorage.read(key: SecureStorageKeys.accessToken);
+
+    try {
+      final response = await http.patch(
+        Uri.parse('${baseUrl}todos/${todo.id}'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+      );
+
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         return TodoModel.fromJson(data['todo']);

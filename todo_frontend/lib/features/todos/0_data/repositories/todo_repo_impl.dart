@@ -60,4 +60,18 @@ class TodoRepoImpl implements TodoRepo {
       return left(GeneralFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, TodoEntity>> completeTodoToDataSource(
+    TodoEntity todo,
+  ) async {
+    try {
+      final result = await todoRemoteDatasource.completeTodoToDatabase(todo);
+      return right(result);
+    } on ServerException catch (_) {
+      return left(ServerFailure());
+    } catch (_) {
+      return left(GeneralFailure());
+    }
+  }
 }

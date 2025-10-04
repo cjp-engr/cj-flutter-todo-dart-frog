@@ -7,4 +7,5 @@ abstract class TodoRepo {
   Future<Either<Failure, List<TodoEntity>>> readTodosFromDataSource();
   Future<Either<Failure, TodoEntity>> updateTodoToDataSource(TodoEntity todo);
   Future<Either<Failure, String>> deleteTodoToDataSource(String id);
+  Future<Either<Failure, TodoEntity>> completeTodoToDataSource(TodoEntity todo);
 }

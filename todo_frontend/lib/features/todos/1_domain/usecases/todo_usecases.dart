@@ -49,6 +49,21 @@ class UpdateTodoUC implements UseCase<dynamic, TodoEntity> {
   }
 }
 
+class CompleteTodoUC implements UseCase<dynamic, TodoEntity> {
+  final TodoRepo todoRepo;
+
+  CompleteTodoUC({required this.todoRepo});
+
+  @override
+  Future<Either<Failure, TodoEntity>> call(TodoEntity params) async {
+    try {
+      return await todoRepo.completeTodoToDataSource(params);
+    } catch (e) {
+      return Left(GeneralFailure());
+    }
+  }
+}
+
 class DeleteTodoUC implements UseCase<dynamic, String> {
   final TodoRepo todoRepo;
 

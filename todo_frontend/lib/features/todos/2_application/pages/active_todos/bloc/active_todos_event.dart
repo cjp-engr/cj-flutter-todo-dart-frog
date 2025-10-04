@@ -2,10 +2,10 @@ part of 'active_todos_bloc.dart';
 
 sealed class ActiveTodosEvent extends Equatable {}
 
-class DoneTodoEvent extends ActiveTodosEvent {
+class CompleteTodoEvent extends ActiveTodosEvent {
   final TodoEntity todo;
 
-  DoneTodoEvent({required this.todo});
+  CompleteTodoEvent({required this.todo});
 
   @override
   List<Object?> get props => [todo];
