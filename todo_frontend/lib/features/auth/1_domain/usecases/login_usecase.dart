@@ -13,7 +13,7 @@ class LoggedInUserUC implements UseCase<dynamic, UserEntity> {
   Future<Either<Failure, UserEntity>> call(UserEntity params) async {
     try {
       final result = await userRepo.loggedInExistingUserFromDataSource(
-        email: params.email,
+        email: params.email!,
         password: params.password!,
       );
       return result;

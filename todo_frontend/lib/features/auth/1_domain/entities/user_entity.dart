@@ -6,21 +6,23 @@ import 'package:todo_frontend/core/typedefs/typedefs.dart';
 
 class UserEntity extends Equatable {
   final String? id;
-  final String email;
+  final String? email;
   final String? fullname;
   final String? username;
   final String? password;
+  final String? token;
 
   const UserEntity({
     this.id,
-    required this.email,
+    this.email,
     this.fullname,
     this.username,
     this.password,
+    this.token,
   });
 
   @override
-  List<Object?> get props => [id, email, fullname, username, password];
+  List<Object?> get props => [id, email, fullname, username, password, token];
 
   UserEntity copyWith({
     String? id,
@@ -28,6 +30,7 @@ class UserEntity extends Equatable {
     String? fullname,
     String? username,
     String? password,
+    String? token,
   }) {
     return UserEntity(
       id: id ?? this.id,
@@ -35,6 +38,7 @@ class UserEntity extends Equatable {
       fullname: fullname ?? this.fullname,
       username: username ?? this.username,
       password: password ?? this.password,
+      token: token ?? this.token,
     );
   }
 
@@ -51,9 +55,7 @@ class UserEntity extends Equatable {
   factory UserEntity.fromJson(MapData map) {
     return UserEntity(
       id: map['id'] != null ? map['id'] as String : null,
-      email: map['email'] as String,
-      fullname: map['fullname'] != null ? map['fullname'] as String : null,
-      username: map['username'] != null ? map['username'] as String : null,
+      token: map['token'] != null ? map['token'] as String : null,
     );
   }
 

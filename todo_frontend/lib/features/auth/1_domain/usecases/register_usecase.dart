@@ -14,7 +14,7 @@ class RegisterUserUC implements UseCase<dynamic, UserEntity> {
     try {
       final result = await userRepo.registerUserToDataSource(
         username: params.username!,
-        email: params.email,
+        email: params.email!,
         fullname: params.fullname!,
         password: params.password!,
       );

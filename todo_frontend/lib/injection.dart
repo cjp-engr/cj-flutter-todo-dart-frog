@@ -55,10 +55,14 @@ Future<void> init() async {
 
   // ! data Layer
   sl.registerFactory<UserRepo>(() => UserRepoImpl(userRemoteDatasource: sl()));
-  sl.registerFactory<UserRemoteDatasource>(() => UserRemoteDatasourceImpl());
+  sl.registerFactory<UserRemoteDatasource>(
+    () => UserRemoteDatasourceImpl(secureStorage: sl()),
+  );
 
   sl.registerFactory<TodoRepo>(() => TodoRepoImpl(todoRemoteDatasource: sl()));
-  sl.registerFactory<TodoRemoteDatasource>(() => TodoRemoteDatasourceImpl());
+  sl.registerFactory<TodoRemoteDatasource>(
+    () => TodoRemoteDatasourceImpl(secureStorage: sl()),
+  );
 
   // ! externs
   sl.registerFactory(() => const FlutterSecureStorage());
