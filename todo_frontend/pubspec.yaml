@@ -33,6 +33,7 @@ dev_dependencies:
   flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
+  patrol: ^3.19.0
 
 flutter:
   generate: true
@@ -54,11 +55,15 @@ flutter_launcher_icons:
   image_path: "assets/icons/notes.png"
   image_path_android: "assets/icons/notes.png"
   image_path_ios: "assets/icons/notes.png"
-  android: true # can specify file name here e.g. "ic_launcher"
-  ios: true # can specify file name here e.g. "My-Launcher-Icon"
-  # adaptive_icon_background: "assets/icons/todo.png" # only available for Android 8.0 devices and above
-  # adaptive_icon_foreground: "assets/icons/todo.png" # only available for Android 8.0 devices and above
-  # adaptive_icon_foreground_inset: 16 # only available for Android 8.0 devices and above
-  # adaptive_icon_monochrome: "assets/icons/todo.png" # only available for Android 13 devices and above
-  # min_sdk_android: 21 # android min sdk min:16, default 21
-  # remove_alpha_ios: true
+  android: true
+  ios: true 
+
+patrol:
+  app_name: TodoApp
+  android:
+    package_name: com.example.todo_frontend
+  ios:
+    bundle_id: com.example.todo_frontend
+  macos:
+    bundle_id: com.example.macos.todo_frontend
+

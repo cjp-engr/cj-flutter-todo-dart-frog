@@ -8,6 +8,7 @@ import 'package:todo_frontend/core/extension/bloc_api_status.dart';
 import 'package:todo_frontend/core/routes/route_name.dart';
 import 'package:todo_frontend/core/utils/build_context_ext.dart';
 import 'package:todo_frontend/core/utils/icon_const.dart';
+import 'package:todo_frontend/core/utils/keys.dart';
 import 'package:todo_frontend/core/widgets/app_bar.dart';
 import 'package:todo_frontend/core/widgets/buttons.dart';
 import 'package:todo_frontend/core/widgets/progress_indicator.dart';
@@ -80,13 +81,13 @@ class _LoginPageState extends State<LoginPage> {
                     const _HeaderWidget(),
                     const SizedBox(height: TodoSpacing.extraLarge),
                     TodoTextField(
-                      key: const Key('testEmail'),
+                      key: K.emailTextField,
                       label: context.appLocalization.userNameOrEmail,
                       controller: _emailController,
                     ),
                     const SizedBox(height: TodoSpacing.small),
                     TodoTextField(
-                      key: const Key('testPassword'),
+                      key: K.passwordTextField,
                       label: context.appLocalization.password,
                       obscureText: true,
                       controller: _passwordController,
@@ -149,7 +150,7 @@ class _ButtonsWidget extends StatelessWidget {
     return Column(
       children: [
         PrimaryButton(
-          key: const Key('testButton'),
+          key: K.loginButton,
           width: double.infinity,
           text: context.appLocalization.login,
           onPressed: onPress,
